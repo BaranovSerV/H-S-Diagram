@@ -17,7 +17,12 @@ class ProcessorData:
             np.array([d[1] for d in steam_data][::-1], dtype=float)
         ))
 
-        return S_saturation, H_saturation
+        T_saturation = np.concatenate((
+            np.array([d[0] for d in liquid_data], dtype=float),
+            np.array([d[0] for d in steam_data][::-1], dtype=float)
+        ))
+
+        return T_saturation, S_saturation, H_saturation
 
 
     @staticmethod
