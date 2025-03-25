@@ -26,24 +26,31 @@ class ProcessorData:
 
 
     @staticmethod
-    def process_isothermal_data(response):
+    def process_isothermal_data(responses):
+        T_isothermal, H_isothermal, S_isothermal = [], [], [] 
         parser = IsothermalParser()
-        data = parser.parse(response)
-        T, H, S = zip(*data)
-        return (
-            list(map(float, T)),
-            list(map(float, H)),
-            list(map(float, S))
-        )
+    
+        for response in responses:
+            data = parser.parse(response)
+            T, H, S = zip(*data)
+
+            T_isothermal.append(list(map(float, T)))
+            H_isothermal.append(list(map(float, H)))
+            S_isothermal.append(list(map(float, S)))
+
+        return T_isothermal, H_isothermal, S_isothermal
 
 
     @staticmethod
-    def process_isobaric_data(response):
+    def process_isobaric_data(responses):
+        P_isobaric, H_isobaric, S_isobaric = [], [], []
         parser = IsobaricParser()
-        data = parser.parse(response)
-        P, H, S = zip(*data)
-        return (
-            list(map(float, P)),
-            list(map(float, H)),
-            list(map(float, S))
-        )
+        for response in responses:
+            data = parser.parse(response)
+            P, H, S = zip(*data)
+
+            P_isobaric.append(list(map(float, P)))
+            H_isobaric.append(list(map(float, H)))
+            S_isobaric.append(list(map(float, S)))
+
+        return P_isobaric, H_isobaric, S_isobaric
