@@ -37,7 +37,7 @@
 
 ## H-S диаграмма:
 
-![alt text](/docs/HS.png)
+![alt text](/docs/H-S.png)
 
 ## Работа с кодом:
 
