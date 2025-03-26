@@ -7,6 +7,10 @@ from bs4 import BeautifulSoup
 class ParserData(ABC):
     @abstractmethod
     def parse(self):
+        """
+        Метод для обработки полученной информации от сервера, 
+        который находит нужные таблицы и берет из нужных столбцов данные 
+        """
         pass    
 
 

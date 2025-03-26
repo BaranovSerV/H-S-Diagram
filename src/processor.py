@@ -1,5 +1,5 @@
 import numpy as np
-from parser import SaturationParser, IsothermalParser, IsobaricParser
+from src.parser import SaturationParser, IsothermalParser, IsobaricParser
 
 class ProcessorData:
     @staticmethod
