@@ -4,8 +4,10 @@ from matplotlib import pyplot as plt
 from src.loader import SaturationLoader, IsobaricLoader, IsothermalLoader
 
 
+"""Файл для удобного и быстрого построения H-S диаграммы после загрузки данных с сервера"""
+
+
 SUBSTANCE_NAME = "Trichlorofluoromethane (R11)" # Название вашего вещества
-P_ON_GRAPH = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 30, 35, 40, 45] # Изобары, которые будут подписываться на графике
 
 saturation_loader = SaturationLoader()
 isothermal_loader = IsothermalLoader()
@@ -15,6 +17,9 @@ isobaric_loader = IsobaricLoader()
 T_saturation, S_saturation, H_saturation = saturation_loader.get_data()
 T_isothermal, S_isothermal, H_isothermal = isothermal_loader.get_data()
 P_isobaric, S_isobaric, H_isobaric = isobaric_loader.get_data()
+
+
+P_ON_GRAPH = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 30, 35, 40, 45] # Изобары, которые будут подписываться на графике
 
 
 plt.subplots(figsize=(12, 8), dpi=200)
