@@ -8,7 +8,7 @@
 
 3. Выбираем системы измерений:
 
-![alt text](/docs/image.png)
+![alt text](/docs/USE_SI.png)
 
 
 4. Нажимаем Press to Continue
