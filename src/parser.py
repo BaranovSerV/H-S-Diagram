@@ -87,3 +87,25 @@ class IsobaricParser(ParserData):
                 entropy = values[6]     
                 data.append((pressure, enthalpy, entropy))
         return data
+
+
+class IsochoricParser(ParserData):
+    def parse(self, response: Response):
+        soup = BeautifulSoup(response.text, "html.parser")
+        table = soup.find_all("table", {"class": "small"})  
+        return self._parse_table(table[1]) 
+
+
+    def _parse_table(self, table):
+        rows = table.find_all("tr")[1:]  
+        data = []
+        
+        for row in rows:
+            cols = row.find_all("td")
+            values = [col.text.strip() for col in cols]
+            if values:
+                pressure = values[4]  
+                enthalpy = values[5]    
+                entropy = values[6]     
+                data.append((pressure, enthalpy, entropy))
+        return data

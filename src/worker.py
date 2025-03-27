@@ -1,6 +1,6 @@
 from src.processor import ProcessorData
-from src.loader import SaturationLoader, IsothermalLoader, IsobaricLoader
-from src.request_api import SaturationAPI, IsothermalAPI, IsobaricAPI
+from src.loader import SaturationLoader, IsothermalLoader, IsobaricLoader, IsochoricLoader
+from src.request_api import SaturationAPI, IsothermalAPI, IsobaricAPI, IsochoricAPI
 
 
 class Worker:
@@ -64,3 +64,25 @@ class Worker:
         loader.load_data(P_isobaric, H_isobaric, S_isobaric)
 
         return P_isobaric, H_isobaric, S_isobaric
+    
+    
+    def isochoric(self, D_isochoric_array, TLow_isochoric, THigh_isochoric, TInc_isochoric):
+        api = IsochoricAPI()
+        response_isochoric = [
+            api.get_url(
+                D,
+                TLow_isochoric,
+                THigh_isochoric,
+                TInc_isochoric,
+                self.ID
+            ) for D in D_isochoric_array
+        ]
+
+        V_isochoric, H_isochoric, S_isochoric = ProcessorData.process_isochoric_data(
+            response_isochoric
+        )
+
+        loader = IsochoricLoader()
+        loader.load_data(V_isochoric, H_isochoric, S_isochoric)
+
+        return V_isochoric, H_isochoric, S_isochoric

@@ -19,7 +19,6 @@ class SaturationAPI(RequestAPI):
         THigh: float,
         TInc: float,
         ID: str
-
     ):
         url = (
             f"{BASE_URL}?TLow={TLow}&THigh={THigh}&TInc={TInc}&Digits=5&ID={ID}" \
@@ -49,6 +48,7 @@ class IsothermalAPI(RequestAPI):
             "&Action=Load&Type=IsoTherm&TUnit=C&PUnit=bar&DUnit=mol%2Fl&HUnit=kJ%2Fkg"
             "&WUnit=m%2Fs&VisUnit=uPa*s&STUnit=N%2Fm&RefState=DEF"
         )
+        
         print(f"Получение данных о изотерме {T}°C...")
         response = requests.get(url)
         if response.status_code == 200:
@@ -80,3 +80,26 @@ class IsobaricAPI(RequestAPI):
         else:
             print(f"Ошибка запроса")
 
+
+class IsochoricAPI(RequestAPI):
+    def get_url(
+        self,
+        D,
+        TLow,
+        THigh,
+        TInc,
+        ID
+    ):
+        url = (
+            f"{BASE_URL}?D={D}&TLow={TLow}&THigh={THigh}&TInc={TInc}&Digits=5&ID={ID}"
+            "&Action=Load&Type=IsoChor&TUnit=C&PUnit=bar&DUnit=kg%2Fm3&HUnit=kJ%2Fkg&"
+            "Unit=m%2Fs&VisUnit=uPa*s&STUnit=N%2Fm&RefState=DEF"
+        )
+        
+        print(f"Получение данных о изохоре {D} кг/m^3...")
+        response = requests.get(url)
+        if response.status_code == 200:
+            print("Данные получены успешно")
+            return response
+        else:
+            print(f"Ошибка запроса")

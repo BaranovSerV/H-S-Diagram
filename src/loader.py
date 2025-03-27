@@ -122,3 +122,40 @@ class IsobaricLoader(Loader):
         H_isobaric = data["H_isobaric"]
 
         return P_isobaric, S_isobaric, H_isobaric
+    
+
+class IsochoricLoader(Loader):
+    def load_data(self, V_isochoric, H_isochoric, S_isochoric):
+        print("Данных данных изохор...")
+
+        os.makedirs(DIRECTORY, exist_ok=True)
+        file_path = os.path.join(DIRECTORY, "isochoric_data.json")
+
+        V_isochoric = np.array(V_isochoric, dtype=object)
+        H_isochoric = np.array(H_isochoric, dtype=object)
+        S_isochoric = np.array(S_isochoric, dtype=object)
+
+        data = {
+            "V_isochoric": V_isochoric.tolist(),
+            "S_isochoric": S_isochoric.tolist(),
+            "H_isochoric": H_isochoric.tolist()
+        }
+
+        with open(file_path, "w") as f:
+            json.dump(data, f, indent=4)
+
+        print("Данные успешно сохранены")
+
+
+    def get_data(self):
+        os.makedirs(DIRECTORY, exist_ok=True)
+        file_path = os.path.join(DIRECTORY, "isochoric_data.json") 
+        
+        with open(file_path, "r") as f:
+            data = json.load(f)
+        
+        V_isochoric = data["V_isochoric"]
+        S_isochoric = data["S_isochoric"]
+        H_isochoric = data["H_isochoric"]
+
+        return V_isochoric, S_isochoric, H_isochoric

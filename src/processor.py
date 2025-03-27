@@ -1,5 +1,5 @@
 import numpy as np
-from src.parser import SaturationParser, IsothermalParser, IsobaricParser
+from src.parser import SaturationParser, IsothermalParser, IsobaricParser, IsochoricParser
 
 class ProcessorData:
     @staticmethod
@@ -54,3 +54,19 @@ class ProcessorData:
             S_isobaric.append(list(map(float, S)))
 
         return P_isobaric, H_isobaric, S_isobaric
+    
+
+    @staticmethod
+    def process_isochoric_data(responses):
+        V_isochoric, H_isochoric, S_isochoric = [], [], []
+        parser = IsochoricParser()
+        for response in responses:
+            data = parser.parse(response)
+            V, H, S = zip(*data)
+
+            V_isochoric.append(list(map(float, V)))
+            H_isochoric.append(list(map(float, H)))
+            S_isochoric.append(list(map(float, S)))
+
+        return V_isochoric, H_isochoric, S_isochoric
+    
