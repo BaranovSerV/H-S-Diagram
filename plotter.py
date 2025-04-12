@@ -7,9 +7,7 @@ from config import *
 """Файл для удобного и быстрого построения H-S диаграммы после загрузки данных с сервера"""
 
 # Границы графика
-H_min = 100
 H_max = 490
-S_min = 0.5
 S_max = 2.4
 
 P_ON_GRAPH = [0.1, 0.2, 0.3, 0.4, 0.5, 0.7, 0.8, 0.9, 1, 1.5,  2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 35, 45] # Изобары, которые будут подписываться на графике
@@ -84,20 +82,20 @@ plt.title(f"H-S диаграмма {SUBSTANCE_NAME}", fontsize=6)
 
 # Цикл Ренкина
 # Если данных о цикле еще нет, оставьте закоментированным
-plt.scatter(S_renkine, H_renkine, color='g', linewidth=0.5, s=2)
-for i in range(len(S_renkine)):
-    plt.text(
-            S_renkine[i] + delta, 
-            H_renkine[i] + delta, 
-            f"{i + 1}", 
-            fontsize=6, 
-            color='black', 
-            bbox=dict(facecolor='none', alpha=0.3, edgecolor='none')
-    )
+# plt.scatter(S_renkine, H_renkine, color='g', linewidth=0.5, s=2)
+# for i in range(len(S_renkine)):
+#     plt.text(
+#             S_renkine[i] + delta, 
+#             H_renkine[i] + delta, 
+#             f"{i + 1}", 
+#             fontsize=6, 
+#             color='black', 
+#             bbox=dict(facecolor='none', alpha=0.3, edgecolor='none')
+#     )
 
 
-x_ticks = np.arange(S_min, S_max,  step=0.02)  
-y_ticks = np.arange(H_min, H_max, step=20) 
+x_ticks = np.arange(min(S_saturation), S_max,  step=0.02)  
+y_ticks = np.arange(min(H_saturation), H_max, step=20) 
 
 plt.xticks(x_ticks, fontsize=4)
 plt.yticks(y_ticks, fontsize=4)
