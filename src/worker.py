@@ -1,6 +1,12 @@
 from src.processor import ProcessorData
-from src.loader import SaturationLoader, IsothermalLoader, IsobaricLoader, IsochoricLoader
+from src.loader import (
+    SaturationLoader, 
+    IsothermalLoader, 
+    IsobaricLoader, 
+    IsochoricLoader
+)
 from src.request_api import SaturationAPI, IsothermalAPI, IsobaricAPI, IsochoricAPI
+from src.renkine import Renkine
 
 
 class Worker:
@@ -86,3 +92,4 @@ class Worker:
         loader.load_data(V_isochoric, H_isochoric, S_isochoric)
 
         return V_isochoric, H_isochoric, S_isochoric
+    

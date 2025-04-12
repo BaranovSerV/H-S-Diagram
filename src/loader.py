@@ -159,3 +159,43 @@ class IsochoricLoader(Loader):
         H_isochoric = data["H_isochoric"]
 
         return V_isochoric, S_isochoric, H_isochoric
+    
+class RenkineLoader(Loader):
+    def load_data(self, S_renkine, H_renkine, P_renkine, T_renkine):
+        print("Сохранение данных Ренкина...")
+
+        os.makedirs(DIRECTORY, exist_ok=True)
+        file_path = os.path.join(DIRECTORY, "renkine_data.json")
+
+        H_renkine = np.array(H_renkine, dtype=object)
+        S_renkine = np.array(S_renkine, dtype=object)
+        T_renkine = np.array(T_renkine, dtype=object)
+        P_renkine = np.array(P_renkine, dtype=object)
+
+        data = {
+            "T_renkine": T_renkine.tolist(),
+            "S_renkine": S_renkine.tolist(),
+            "H_renkine": H_renkine.tolist(),
+            "P_renkine": P_renkine.tolist()
+        }
+        with open(file_path, "w") as f:
+            json.dump(data, f, indent=4)
+        print("Данные успешно сохранены")
+
+
+    def get_data(self):
+        os.makedirs(DIRECTORY, exist_ok=True)
+        file_path = os.path.join(DIRECTORY, "renkine_data.json") 
+        
+        if not os.path.exists(file_path):
+            return [], [], [], []
+
+        with open(file_path, "r") as f:
+            data = json.load(f)
+        
+        S_renkine = data["S_renkine"]
+        H_renkine = data["H_renkine"]
+        T_renkine = data["T_renkine"]
+        P_renkine = data["P_renkine"]
+
+        return S_renkine, H_renkine, T_renkine, P_renkine
