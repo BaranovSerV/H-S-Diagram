@@ -93,7 +93,7 @@ class StandartRenkine(Renkine):
                 self.T_5_point,
                 self.T_6_point
             ],
-            "H (кДж/кг)": [
+            "h (кДж/кг)": [
                 self.H_1_point,
                 self.H_2_point,
                 self.H_3_point,
@@ -101,7 +101,7 @@ class StandartRenkine(Renkine):
                 self.H_5_point,
                 self.H_6_point
             ],
-            "S (кДж/кг·K)": [
+            "s (кДж/кг·K)": [
                 self.S_1_point,
                 self.S_2_point,
                 self.S_3_point,
