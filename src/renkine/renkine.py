@@ -19,7 +19,9 @@ class Renkine:
             self.T_isobaric, 
             self.V_isobaric 
         ) = self.isobaric_loader.get_data()
+
         self.max_index = np.argmax(self.H_saturation) # Индекс критической точки
+
 
     def _get_nearest_point(self, S_saturation, H_saturation, S_iso, H_iso):
         min_distance = float('inf')

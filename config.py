@@ -4,18 +4,18 @@ SUBSTANCE_NAME = "Trichlorofluoromethane (R11)" # Название вашего 
 ID = "C76197" # ID вашего вещества
 
 # Линия насыщения
-TLow_saturation = -147 # Нижние, верхние границы температур и шаг для линии насыщения
-THigh_saturation = 71
+TLow_saturation = -110 # Нижние, верхние границы температур и шаг для линии насыщения
+THigh_saturation = 197
 TInc_saturation = 0.01 # Шаг изменения температуры
 
 # Изотермы 
 PLow_isothermal = 1 # Нижние и верхние границы давлений для изотерм
-PHigh_isothermal = 200
+PHigh_isothermal = 300
 PInc_isothermal = 0.01 # Шаг давлений для изотерм
 
 # Изобары
-TLow_isobaric = -147 # Нижние и верхние границы температур для изобар
-THigh_isobaric = 166
+TLow_isobaric = -110 # Нижние и верхние границы температур для изобар
+THigh_isobaric = 350
 TInc_isobaric = 0.01 # Шаг температуры для изобары
 
 # Изохоры
