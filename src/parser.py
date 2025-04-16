@@ -55,16 +55,18 @@ class IsothermalParser(ParserData):
 
         rows = table.find_all("tr")[1:]  
         data = []
-        
+          
+        first_row_cols = rows[0].find_all("td")
+        temperature = first_row_cols[0].text.strip()       
+
         for row in rows:
             cols = row.find_all("td")
             values = [col.text.strip() for col in cols]
             if values:
-                temperature = values[0]  
                 enthalpy = values[5]    
                 entropy = values[6]     
-                data.append((temperature, enthalpy, entropy))
-        return data
+                data.append(( enthalpy, entropy))
+        return temperature, data
     
 
 class IsobaricParser(ParserData):
@@ -77,16 +79,20 @@ class IsobaricParser(ParserData):
     def _parse_table(self, table):
         rows = table.find_all("tr")[1:]  
         data = []
+
+        first_row_cols = rows[0].find_all("td")
+        pressure = first_row_cols[1].text.strip() 
         
         for row in rows:
             cols = row.find_all("td")
             values = [col.text.strip() for col in cols]
             if values:
-                pressure = values[1]  
                 enthalpy = values[5]    
-                entropy = values[6]     
-                data.append((pressure, enthalpy, entropy))
-        return data
+                entropy = values[6] 
+                temperature = values[0]
+                volume = values[3]     
+                data.append((enthalpy, entropy, temperature, volume))
+        return pressure, data
 
 
 class IsochoricParser(ParserData):

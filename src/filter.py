@@ -41,19 +41,17 @@ class IsothermalFilterData(FilterData):
         filtered_S = []
         filtered_H = []
 
-        for t_row, s_row, h_row in zip(T_isothermal, S_isothermal, H_isothermal):
-            t_filtered_row = []
+        for t, s_row, h_row in zip(T_isothermal, S_isothermal, H_isothermal):
             s_filtered_row = []
             h_filtered_row = []
 
-            for t, s, h in zip(t_row, s_row, h_row):
+            for s, h in zip(s_row, h_row):
                 if  h <= self.h_max and s <= self.s_max:
-                    t_filtered_row.append(t)
                     s_filtered_row.append(s)
                     h_filtered_row.append(h)
 
-            if t_filtered_row:  # добавлять только непустые ряды
-                filtered_T.append(t_filtered_row)
+            if s_filtered_row:  # добавлять только непустые ряды
+                filtered_T.append(t)
                 filtered_S.append(s_filtered_row)
                 filtered_H.append(h_filtered_row)
 
@@ -66,19 +64,17 @@ class IsobaricFilterData(FilterData):
         filtered_S = []
         filtered_H = []
 
-        for p_row, s_row, h_row in zip(P_isobaric, S_isobaric, H_isobaric):
-            p_filtered_row = []
+        for p, s_row, h_row in zip(P_isobaric, S_isobaric, H_isobaric):
             s_filtered_row = []
             h_filtered_row = []
 
-            for p, s, h in zip(p_row, s_row, h_row):
+            for s, h in zip(s_row, h_row):
                 if h <= self.h_max and s <= self.s_max:
-                    p_filtered_row.append(p)
                     s_filtered_row.append(s)
                     h_filtered_row.append(h)
 
-            if p_filtered_row:
-                filtered_P.append(p_filtered_row)
+            if s_filtered_row:
+                filtered_P.append(p)
                 filtered_S.append(s_filtered_row)
                 filtered_H.append(h_filtered_row)
 

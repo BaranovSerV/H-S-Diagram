@@ -62,14 +62,14 @@ class Worker:
             ) for P in P_isobaric_array
         ]
         
-        P_isobaric, H_isobaric, S_isobaric = ProcessorData.process_isobaric_data(
+        P_isobaric, H_isobaric, S_isobaric, T_isobaric, V_isobaric = ProcessorData.process_isobaric_data(
             response_isobaric
         )
 
         loader = IsobaricLoader()
-        loader.load_data(P_isobaric, H_isobaric, S_isobaric)
+        loader.load_data(P_isobaric, H_isobaric, S_isobaric, T_isobaric, V_isobaric)
 
-        return P_isobaric, H_isobaric, S_isobaric
+        return P_isobaric, H_isobaric, S_isobaric, T_isobaric, V_isobaric
     
     
     def isochoric(self, D_isochoric_array, TLow_isochoric, THigh_isochoric, TInc_isochoric):

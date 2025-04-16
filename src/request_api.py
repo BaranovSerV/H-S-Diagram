@@ -21,7 +21,7 @@ class SaturationAPI(RequestAPI):
         ID: str
     ):
         url = (
-            f"{BASE_URL}?TLow={TLow}&THigh={THigh}&TInc={TInc}&Digits=5&ID={ID}" \
+            f"{BASE_URL}?TLow={TLow}&THigh={THigh}&TInc={TInc}&Digits=10&ID={ID}" \
             "&Action=Load&Type=SatP&TUnit=C&PUnit=bar&DUnit=mol%2Fl&HUnit=kJ%2F" \
             "kg&WUnit=m%2Fs&VisUnit=uPa*s&STUnit=N%2Fm&RefState=DEF"
         )
@@ -44,7 +44,7 @@ class IsothermalAPI(RequestAPI):
         ID: str
     ):
         url = (
-            f"{BASE_URL}?T={T}&PLow={PLow}&PHigh={PHigh}&PInc={PInc}&Digits=5&ID={ID}"
+            f"{BASE_URL}?T={T}&PLow={PLow}&PHigh={PHigh}&PInc={PInc}&Digits=10&ID={ID}"
             "&Action=Load&Type=IsoTherm&TUnit=C&PUnit=bar&DUnit=mol%2Fl&HUnit=kJ%2Fkg"
             "&WUnit=m%2Fs&VisUnit=uPa*s&STUnit=N%2Fm&RefState=DEF"
         )
@@ -68,8 +68,8 @@ class IsobaricAPI(RequestAPI):
         ID: str
     ):
         url = (
-            f"{BASE_URL}?P={P}&TLow={TLow}&THigh={THigh}&TInc={TInc}&Digits=5&ID={ID}"
-            "&Action=Load&Type=IsoBar&TUnit=C&PUnit=bar&DUnit=mol%2Fl&HUnit=kJ%2Fkg"
+            f"{BASE_URL}?P={P}&TLow={TLow}&THigh={THigh}&TInc={TInc}&Digits=10&ID={ID}"
+            "&Action=Load&Type=IsoBar&TUnit=C&PUnit=bar&DUnit=kg%2Fm3&HUnit=kJ%2Fkg"
             "&WUnit=m%2Fs&VisUnit=uPa*s&STUnit=N%2Fm&RefState=DEF"
         )
         print(f"Получение данных о изобаре {P} бар...")
@@ -91,7 +91,7 @@ class IsochoricAPI(RequestAPI):
         ID
     ):
         url = (
-            f"{BASE_URL}?D={D}&TLow={TLow}&THigh={THigh}&TInc={TInc}&Digits=5&ID={ID}"
+            f"{BASE_URL}?D={D}&TLow={TLow}&THigh={THigh}&TInc={TInc}&Digits=10&ID={ID}"
             "&Action=Load&Type=IsoChor&TUnit=C&PUnit=bar&DUnit=kg%2Fm3&HUnit=kJ%2Fkg&"
             "Unit=m%2Fs&VisUnit=uPa*s&STUnit=N%2Fm&RefState=DEF"
         )

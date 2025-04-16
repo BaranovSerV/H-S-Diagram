@@ -45,7 +45,9 @@ class WokerPlotter:
         (
             P_isobaric_no_filter, 
             S_isobaric_no_filter, 
-            H_isobaric_no_filter 
+            H_isobaric_no_filter,
+            T_isobaric,
+            D_isobaric
         ) = isobaric_loader.get_data()
 
         (
@@ -75,13 +77,13 @@ class WokerPlotter:
             H_isochoric_no_filter
         )
 
-        S_renkine, H_renkine, T_renkine, P_renkine  = renkine_loader.get_data()
+        S_renkine, H_renkine, T_renkine, P_renkine, V_renkine  = renkine_loader.get_data()
 
         return (
             T_saturation, S_saturation, H_saturation,
             T_isothermal, S_isothermal, H_isothermal,
-            P_isobaric, S_isobaric, H_isobaric,
+            P_isobaric, S_isobaric, H_isobaric, T_isobaric, D_isobaric,
             V_isochoric, S_isochoric, H_isochoric,
-            S_renkine, H_renkine, T_renkine, P_renkine
+            S_renkine, H_renkine, T_renkine, P_renkine, V_renkine
         )
 

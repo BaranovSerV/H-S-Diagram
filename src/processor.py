@@ -31,10 +31,10 @@ class ProcessorData:
         parser = IsothermalParser()
     
         for response in responses:
-            data = parser.parse(response)
-            T, H, S = zip(*data)
+            temperature, data = parser.parse(response)
+            H, S = zip(*data)
 
-            T_isothermal.append(list(map(float, T)))
+            T_isothermal.append(float(temperature))
             H_isothermal.append(list(map(float, H)))
             S_isothermal.append(list(map(float, S)))
 
@@ -43,17 +43,19 @@ class ProcessorData:
 
     @staticmethod
     def process_isobaric_data(responses):
-        P_isobaric, H_isobaric, S_isobaric = [], [], []
+        P_isobaric, H_isobaric, S_isobaric, T_isobaric, V_isobaric = [], [], [], [], []
         parser = IsobaricParser()
         for response in responses:
-            data = parser.parse(response)
-            P, H, S = zip(*data)
+            pressure, data = parser.parse(response)
+            H, S, T, V = zip(*data)
 
-            P_isobaric.append(list(map(float, P)))
+            P_isobaric.append(float(pressure))
             H_isobaric.append(list(map(float, H)))
             S_isobaric.append(list(map(float, S)))
+            T_isobaric.append(list(map(float, T)))
+            V_isobaric.append(list(map(float, V)))
 
-        return P_isobaric, H_isobaric, S_isobaric
+        return P_isobaric, H_isobaric, S_isobaric, T_isobaric, V_isobaric
     
 
     @staticmethod

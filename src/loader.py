@@ -4,8 +4,9 @@ from abc import ABC, abstractmethod
 
 import numpy as np
 
+from config import *
 
-DIRECTORY = "data"
+DIRECTORY = f"data/{ID}"
 
 
 class Loader(ABC):
@@ -41,7 +42,10 @@ class SaturationLoader(Loader):
     def get_data(self):
         os.makedirs(DIRECTORY, exist_ok=True)
         file_path = os.path.join(DIRECTORY, "saturation_data.json") 
-        
+
+        if not os.path.exists(file_path):
+            return [], [], []
+
         with open(file_path, "r") as f:
             data = json.load(f)
         
@@ -76,7 +80,10 @@ class IsothermalLoader(Loader):
     def get_data(self):
         os.makedirs(DIRECTORY, exist_ok=True)
         file_path = os.path.join(DIRECTORY, "isothermal_data.json") 
-        
+
+        if not os.path.exists(file_path):
+            return [], [], []
+
         with open(file_path, "r") as f:
             data = json.load(f)
         
@@ -88,7 +95,7 @@ class IsothermalLoader(Loader):
     
 
 class IsobaricLoader(Loader):
-    def load_data(self, P_isobaric, H_isobaric, S_isobaric):
+    def load_data(self, P_isobaric, H_isobaric, S_isobaric, T_isobaric, V_isobaric):
         print("Данных данных изобар...")
 
         os.makedirs(DIRECTORY, exist_ok=True)
@@ -97,11 +104,15 @@ class IsobaricLoader(Loader):
         P_isobaric = np.array(P_isobaric, dtype=object)
         H_isobaric = np.array(H_isobaric, dtype=object)
         S_isobaric = np.array(S_isobaric, dtype=object)
+        T_isobaric = np.array(T_isobaric, dtype=object)
+        V_isobaric = np.array(V_isobaric, dtype=object)
 
         data = {
             "P_isobaric": P_isobaric.tolist(),
             "S_isobaric": S_isobaric.tolist(),
-            "H_isobaric": H_isobaric.tolist()
+            "H_isobaric": H_isobaric.tolist(),
+            "T_isobaric": T_isobaric.tolist(),
+            "V_isobaric": V_isobaric.tolist()
         }
 
         with open(file_path, "w") as f:
@@ -113,15 +124,20 @@ class IsobaricLoader(Loader):
     def get_data(self):
         os.makedirs(DIRECTORY, exist_ok=True)
         file_path = os.path.join(DIRECTORY, "isobaric_data.json") 
-        
+
+        if not os.path.exists(file_path):
+            return [], [], [], [], []
+
         with open(file_path, "r") as f:
             data = json.load(f)
         
         P_isobaric = data["P_isobaric"]
         S_isobaric = data["S_isobaric"]
         H_isobaric = data["H_isobaric"]
+        T_isobaric = data["T_isobaric"]
+        V_isobaric = data["V_isobaric"]
 
-        return P_isobaric, S_isobaric, H_isobaric
+        return P_isobaric, S_isobaric, H_isobaric, T_isobaric, V_isobaric
     
 
 class IsochoricLoader(Loader):
@@ -150,7 +166,10 @@ class IsochoricLoader(Loader):
     def get_data(self):
         os.makedirs(DIRECTORY, exist_ok=True)
         file_path = os.path.join(DIRECTORY, "isochoric_data.json") 
-        
+
+        if not os.path.exists(file_path):
+            return [], [], []
+
         with open(file_path, "r") as f:
             data = json.load(f)
         
@@ -160,9 +179,10 @@ class IsochoricLoader(Loader):
 
         return V_isochoric, S_isochoric, H_isochoric
     
+    
 class RenkineLoader(Loader):
-    def load_data(self, S_renkine, H_renkine, P_renkine, T_renkine):
-        print("Сохранение данных Ренкина...")
+    def load_data(self, S_renkine, H_renkine, P_renkine, T_renkine, V_renkine):
+        print("Сохранение данных цикла Ренкина...")
 
         os.makedirs(DIRECTORY, exist_ok=True)
         file_path = os.path.join(DIRECTORY, "renkine_data.json")
@@ -171,12 +191,13 @@ class RenkineLoader(Loader):
         S_renkine = np.array(S_renkine, dtype=object)
         T_renkine = np.array(T_renkine, dtype=object)
         P_renkine = np.array(P_renkine, dtype=object)
-
+        V_renkine = np.array(V_renkine, dtype=object)
         data = {
             "T_renkine": T_renkine.tolist(),
             "S_renkine": S_renkine.tolist(),
             "H_renkine": H_renkine.tolist(),
-            "P_renkine": P_renkine.tolist()
+            "P_renkine": P_renkine.tolist(),
+            "V_renkine": V_renkine.tolist()
         }
         with open(file_path, "w") as f:
             json.dump(data, f, indent=4)
@@ -188,7 +209,7 @@ class RenkineLoader(Loader):
         file_path = os.path.join(DIRECTORY, "renkine_data.json") 
         
         if not os.path.exists(file_path):
-            return [], [], [], []
+            return [], [], [], [], []
 
         with open(file_path, "r") as f:
             data = json.load(f)
@@ -197,5 +218,6 @@ class RenkineLoader(Loader):
         H_renkine = data["H_renkine"]
         T_renkine = data["T_renkine"]
         P_renkine = data["P_renkine"]
+        V_renkine = data["V_renkine"]
 
-        return S_renkine, H_renkine, T_renkine, P_renkine
+        return S_renkine, H_renkine, T_renkine, P_renkine, V_renkine
