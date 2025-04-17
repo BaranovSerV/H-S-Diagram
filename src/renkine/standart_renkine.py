@@ -16,15 +16,15 @@ class StandartRenkine(Renkine):
 
     def _process_data(self):
         self.S = [self.S_1_point, self.S_2_point, self.S_3_point, self.S_4_point]
-        for s in self.S_ren:
-            self.S.append(s)
+        # for s in self.S_ren:
+        #     self.S.append(s)
         self.S.append(self.S_5_point)
         self.S.append(self.S_6_point)
         self.S.append(self.S_1_point)
 
         self.T = [self.T_1_point, self.T_2_point, self.T_3_point, self.T_4_point]
-        for t in self.T_ren:
-            self.T.append(t)
+        # for t in self.T_ren:
+            # self.T.append(t)
     
         self.T.append(self.T_5_point)
         self.T.append(self.T_6_point)
