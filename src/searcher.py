@@ -1,6 +1,5 @@
 import numpy as np
 from scipy.interpolate import interp1d
-from sklearn.preprocessing import MinMaxScaler
 
 from src.loader import IsothermalLoader, IsobaricLoader
 from src.utils import linear_spline

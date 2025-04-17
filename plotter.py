@@ -11,7 +11,7 @@ H_max = 500
 S_max = 2.2
 
 P_ON_GRAPH = [0.1, 0.2, 0.3, 0.4, 0.5, 0.7, 0.8, 0.9, 1, 1.5,  2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 35, 45] # Изобары, которые будут подписываться на графике
-T_ON_GRAPH = [-10, 0, 10, 20, 40, 70, 80, 100, 120, 140, 160, 170, 180, 200, 220, 240,] # Изотермы, которые будут подписываться на графике
+T_ON_GRAPH = [-10, 0, 10, 20, 40, 70, 80, 100, 120, 140, 160, 180, 200, 220, 240,] # Изотермы, которые будут подписываться на графике
 
 
 worker_plotter = WokerPlotter(H_max, S_max)
@@ -94,7 +94,7 @@ for i in range(len(S_renkine)):
     )
 
 
-x_ticks = np.arange(min(S_saturation), S_max,  step=0.2)  
+x_ticks = np.arange(min(S_saturation), S_max,  step=0.02)  
 y_ticks = np.arange(min(H_saturation), H_max, step=40) 
 
 
