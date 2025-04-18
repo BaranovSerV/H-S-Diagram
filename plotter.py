@@ -10,6 +10,15 @@ from config import *
 H_max = 560
 S_max = 2.2
 
+# Минимальные нельзя указывать больше минимального значения HS диаграммы, 
+# т.к. возможно обрезка необходимых графиков
+H_min = 100
+S_min = 0.5
+
+# Шаг на сетке 
+S_step = 0.05
+H_step = 50
+
 P_ON_GRAPH = [0.1, 0.2, 0.3, 0.4, 0.5, 0.7, 0.8, 0.9, 1, 1.5,  2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 35, 45] # Изобары, которые будут подписываться на графике
 T_ON_GRAPH = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 180] # Изотермы, которые будут подписываться на графике
 
@@ -94,8 +103,8 @@ plt.title(f"H-S диаграмма {SUBSTANCE_NAME}", fontsize=6)
 #     )
 
 
-x_ticks = np.arange(min(S_saturation), S_max,  step=0.05)  
-y_ticks = np.arange(100, H_max, step=50) 
+x_ticks = np.arange(S_min, S_max,  step=S_step)  
+y_ticks = np.arange(H_min, H_max, step=H_step) 
 
 
 plt.xticks(x_ticks, fontsize=4)
